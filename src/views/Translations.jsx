@@ -2,6 +2,8 @@ import withAuth from "../hoc/withAuth"
 import TranslationForm from "../components/Translations/TranslationForm"
 import TranslationButton from "../components/Translations/TranslationButton"
 import { useState } from "react";
+import { useUser } from "../context/UserContext";
+import { translationAdd } from "../api/store";
 
 // Object to store the translation information
 function TranslationObject() {
@@ -10,11 +12,23 @@ function TranslationObject() {
     this.translatedText = "";
 };
 
-const translationObject = new TranslationObject();
-
 const Translation = () => {
+    const [ translation, setTranslation ] = useState(new TranslationObject())
+    const { user } = useUser()
+
     const handleTranslationClicked = (translationId) => {
-        console.log(translationObject);
+        setTranslation(translation, new TranslationObject())
+    }
+
+    const handleShowClicked = async (text) => {
+        setTranslation(translation, translation.text = text)
+        console.log(translation)
+        console.log(user)
+
+        const [ error, result ] = await translationAdd(user, text)
+
+        console.log('Error: ', error)
+        console.log('Result: ', result)
     }
 
     return (
@@ -22,15 +36,15 @@ const Translation = () => {
             <h1>Lost in Translation</h1>
 
             <section id="translate-options">
-                <TranslationButton key={ translationObject.id } translationObj={ translationObject } onSelect={ handleTranslationClicked }/>
+                <TranslationButton key={ translation.id } translationObj={ translation } onSelect={ handleTranslationClicked }/>
             </section>
 
             <section id="translate-notes">
-                <TranslationForm />    
+                <TranslationForm onTranslation={ handleShowClicked }/>    
             </section>
 
             <h4>Translation Box</h4>
-            { translationObject && <p>Translation: { translationObject.id }</p>}
+            { translation && <p>Translation: { translation.id }</p>}
         </>
     )
 }
