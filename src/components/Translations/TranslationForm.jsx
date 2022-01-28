@@ -1,9 +1,22 @@
+import { useForm } from "react-hook-form"
+
 const TranslationForm = () => {
+    const { register, handleSubmit } = useForm()
+ 
+    // Event Handlers
+    const onSubmit = data => {
+        console.log(data);
+    }
+
     return (
         <>
-            <h2>TranslationForm</h2>
+            <form onSubmit={ handleSubmit(onSubmit) }>
+                <fieldset>
+                    <input type="text" {...register('translationText')} placeholder="Enter text" />
+                </fieldset>
 
-
+                <button type="submit">Show...</button>
+            </form>
         </>
     )
 }
