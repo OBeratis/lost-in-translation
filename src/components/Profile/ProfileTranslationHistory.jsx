@@ -10,7 +10,7 @@ const ProfileTranslationHistory = ({ translations }) => {
         <section>
             <h4>Your translations history</h4>
             <ul>
-                {/* { translationList } */}
+                { translationList }
             </ul>
         </section>
 

@@ -22,7 +22,7 @@ const LoginForm = () => {
 
     // Side Effects
     useEffect(() => {
-        console.log('User has changed!')
+        // console.log('User has changed!')
         if (user !== null) {
             navigate('translation')
         } 

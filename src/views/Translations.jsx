@@ -4,6 +4,8 @@ import TranslationButton from "../components/Translations/TranslationButton"
 import { useState } from "react";
 import { useUser } from "../context/UserContext";
 import { translationAdd } from "../api/store";
+import { STORAGE_KEY_USER } from '../../src/const/storageKeys'
+import { storageSave } from '../../src/utils/Storage'
 
 // Object to store the translation information
 function TranslationObject() {
@@ -14,7 +16,7 @@ function TranslationObject() {
 
 const Translation = () => {
     const [ translation, setTranslation ] = useState(new TranslationObject())
-    const { user } = useUser()
+    const { user, setUser } = useUser()
 
     const handleTranslationClicked = (translationId) => {
         setTranslation(translation, new TranslationObject())
@@ -22,13 +24,19 @@ const Translation = () => {
 
     const handleShowClicked = async (text) => {
         setTranslation(translation, translation.text = text)
-        console.log(translation)
-        console.log(user)
 
-        const [ error, result ] = await translationAdd(user, text)
+        const [ error, updatedUser ] = await translationAdd(user, text)
+        if (error !== null){
+            return
+        }
+
+        // Keep UI state and Server state in sync
+        storageSave(STORAGE_KEY_USER, updatedUser)
+        // Update context state
+        setUser( updatedUser )
 
         console.log('Error: ', error)
-        console.log('Result: ', result)
+        console.log('UpdatedUser: ', updatedUser)
     }
 
     return (

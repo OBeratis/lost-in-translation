@@ -1,11 +1,12 @@
 import { Link } from 'react-router-dom'
-import { storageDelete } from "../../utils/Storage"
+import { storageDelete, storageSave } from "../../utils/Storage"
 import { STORAGE_KEY_USER } from "../../const/storageKeys"
 import { useUser } from "../../context/UserContext"
+import { translationClearHistory } from '../../api/store'
 
 const ProfileActions = () => {
 
-    const { setUser } = useUser()
+    const { user, setUser } = useUser()
 
     const handleLogoutClick = () => {
         const doLogout = window.confirm('Are you sure?')
@@ -15,10 +16,30 @@ const ProfileActions = () => {
         }
     }
 
+    const handleClearHistoryClick = async () => {
+        const doClearHistory = window.confirm('Clear translations history.\nAre you sure?')
+        if (!doClearHistory) {
+            return
+        }
+
+        const [ clearError, clearResult ] = await translationClearHistory(user.id)
+        if (clearError !== null) {
+            return
+        }
+
+        const updatedUser = {
+            ...user,
+            translations: []
+        }
+
+        setUser(updatedUser)
+        storageSave(STORAGE_KEY_USER, updatedUser)
+    }
+
     return (
         <ul>
             <li><Link to="/translation">Translations</Link></li>
-            <li><button>Clear History</button></li>
+            <li><button onClick={ handleClearHistoryClick }>Clear History</button></li>
             <li><button onClick={ handleLogoutClick }>Logout</button></li>
         </ul>
 
