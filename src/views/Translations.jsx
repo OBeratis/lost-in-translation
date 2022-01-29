@@ -6,6 +6,7 @@ import { useUser } from "../context/UserContext";
 import { translationAdd } from "../api/store";
 import { STORAGE_KEY_USER } from '../../src/const/storageKeys'
 import { storageSave } from '../../src/utils/Storage'
+import TranslationBox from "../components/Translations/TranslationBox";
 
 // Object to store the translation information
 function TranslationObject() {
@@ -51,8 +52,9 @@ const Translation = () => {
                 <TranslationForm onTranslation={ handleShowClicked }/>    
             </section>
 
-            <h4>Translation Box</h4>
-            { translation && <p>Translation: { translation.id }</p>}
+            {/* <h4>Translation Box</h4>
+            { translation && <p>Translation: { translation.id }</p>} */}
+            { translation && <TranslationBox translation={ translation } />} 
         </>
     )
 }
