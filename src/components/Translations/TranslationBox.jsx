@@ -1,12 +1,16 @@
 import TranslationBoxImagesItem from "./TranslationBoxImagesItem"
 
 const TranslationBox = ({ translation, translatedNotes = '' }) => {
-
-    console.log(`Inside box: ${translation.text} ${typeof translation}`)
-    
+    // Create alphabet with capital letters
+    let arrAlphabet = Array.from(Array(26)).map((l, i) => String.fromCharCode(i + 65))
+    // concat with lower case letters
+    arrAlphabet = arrAlphabet.concat( Array.from(Array(26)).map((l, i) => String.fromCharCode(i + 97)) )
+    // Create array of translation letters
     const listOfLetters = Array.from(translation.text)
-    console.log(listOfLetters)
-    const signTranslationList = listOfLetters.map(
+    // Eliminate non alphabet characters
+    const checkedListOfLetters = listOfLetters.filter(letter => arrAlphabet.includes(letter))
+
+    const signTranslationList = checkedListOfLetters.map(
         (letter, index) => 
         <TranslationBoxImagesItem key={ index + '-' + letter } item={ "images/" + letter + ".png" } />
     )
