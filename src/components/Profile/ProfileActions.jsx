@@ -22,12 +22,10 @@ const ProfileActions = () => {
             return
         }
 
-        /*
         const [ clearError ] = await translationClearHistory(user.id)
         if (clearError !== null) {
             return
         }
-        */
        
         const updatedUser = {
             ...user,
