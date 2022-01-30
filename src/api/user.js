@@ -50,6 +50,8 @@ export const loginUser = async (username) => {
         return [ checkError, null ]
     }
 
+    console.log('Login user: ', user)
+    
     if (user.length > 0) {
         return [ null, user.pop() ]
     }
