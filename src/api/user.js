@@ -1,6 +1,7 @@
 import { createHeaders } from "./index"
 
-const apiUrl = process.env.REACT_APP_API_URL
+// const apiUrl = process.env.REACT_APP_API_URL
+const apiUrl = 'https://obe-assignment-api.herokuapp.com/translations'
 
 const checkForUser = async (username) => {
     try {
@@ -51,7 +52,7 @@ export const loginUser = async (username) => {
     }
 
     console.log('Login user: ', user)
-    
+
     if (user.length > 0) {
         return [ null, user.pop() ]
     }
