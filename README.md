@@ -2,17 +2,20 @@
 
 An online sign language translator as a Single Page Application using the React framework. 
 
-## Design
+## Design & Background
 
-Please use the following file 'Design_Lost-In-Translation.pdf' to get a design overview of this application
+Please use the following file [Design_Lost-In-Translation.pdf] to get a design overview of this application
 
-## Installation
+This repository is located at:
 
-Please use provided app under https://obe-lost-in-translation.herokuapp.com/
+```
+https://github.com/OBeratis/lost-in-translation
+```
 
-## Code
+## Run
 
-Full code provided in GitHub https://github.com/OBeratis/lost-in-translation as public
+https://obe-lost-in-translation.herokuapp.com/
+
 
 ## Maintainers
 
