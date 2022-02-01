@@ -1,7 +1,6 @@
 import { createHeaders } from "."
 
-const apiUrl = process.env.REACT_APP_API_URL
-// const apiUrl = 'https://obe-assignment-api.herokuapp.com/translations'
+const apiUrl = 'https://obe-assignment-api.herokuapp.com/translations'
 // GET - Read records
 // POST - Create new record
 // PATCH - Update parts of the record
