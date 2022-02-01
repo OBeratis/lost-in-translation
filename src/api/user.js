@@ -1,8 +1,9 @@
 import { createHeaders } from "./index"
 
-// const apiUrl = process.env.REACT_APP_API_URL
-const apiUrl = 'https://obe-assignment-api.herokuapp.com/translations'
+const apiUrl = process.env.REACT_APP_API_URL
+// const apiUrl = 'https://obe-assignment-api.herokuapp.com/translations'
 
+// Functions for user DB requests
 const checkForUser = async (username) => {
     try {
         const response = await fetch(`${apiUrl}?username=${username}`)

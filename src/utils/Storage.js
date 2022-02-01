@@ -1,3 +1,4 @@
+// Save user data in local bwowser storage
 const validateKey = key => {
     if (!key || typeof key !== 'string') {
         throw new Error('Invalid storage key provided')

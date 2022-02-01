@@ -1,6 +1,7 @@
 import { Navigate } from 'react-router-dom'
 import { useUser } from "../context/UserContext"
 
+// With Authentication implementation
 const withAuth = Component => props => {
     const { user }  = useUser()
 

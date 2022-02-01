@@ -8,6 +8,9 @@ import { useUser } from "../context/UserContext"
 import withAuth from "../hoc/withAuth"
 // import { storageSave } from '../utils/Storage'
 
+// Profile page
+// Function delete stored data in DB deactivated
+
 const Profile = () => {
 
     // const { user, setUser } = useUser()

@@ -15,6 +15,7 @@ function TranslationObject() {
     this.translatedText = "";
 };
 
+// Translation page
 const Translation = () => {
     const [ translation, setTranslation ] = useState(new TranslationObject())
     const { user, setUser } = useUser()
